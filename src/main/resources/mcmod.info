@@ -1,0 +1,16 @@
+[
+{
+  "modid": "jexclusives",
+  "name": "Jon's Exclusives",
+  "description": "A custom mod for exclusive content.",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["Jon"],
+  "credits": "The Forge and FML guys, for making this example",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
