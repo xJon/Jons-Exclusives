@@ -6,10 +6,9 @@ import xjon.jexclusives.util.Log;
 public class ClientProxy extends CommonProxy {
 	
 	@Override
-	public void InitCapes(String url)
+	public void InitCapes()
 	{
-		DevCapes.getInstance().registerConfig(url);
-		Log.info("debug");
+		DevCapes.getInstance().registerConfig("put final url here");
 	}
 	
 }
