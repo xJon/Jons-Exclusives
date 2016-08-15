@@ -17,7 +17,7 @@ public class JECore
 	@SidedProxy(clientSide = Reference.CLIENT_PROXY_CLASS, serverSide = Reference.SERVER_PROXY_CLASS)
 	public static CommonProxy proxy;
 	
-	public final String url = "";
+	public final String url = "https://raw.githubusercontent.com/xJon/Jons-Exclusives/master/src/main/resources/capes.json";
 	
 	@EventHandler
 	public void Init(FMLInitializationEvent event)
