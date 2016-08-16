@@ -1,14 +1,21 @@
 package xjon.jexclusives.proxy;
 
+import cpw.mods.fml.common.FMLCommonHandler;
 import jadarstudios.developercapes.DevCapes;
-import xjon.jexclusives.util.Log;
+import xjon.jexclusives.event.ClientPlayerEvents;
 
 public class ClientProxy extends CommonProxy {
 	
 	@Override
-	public void InitCapes()
+	public void initCapes()
 	{
 		DevCapes.getInstance().registerConfig("put final url here");
+	}
+	
+	@Override
+	public void clientPlayerEvents()
+	{
+		FMLCommonHandler.instance().bus().register(new ClientPlayerEvents());
 	}
 	
 }
