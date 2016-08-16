@@ -30,34 +30,47 @@ public class ClientPlayerEvents {
 				EnumChatFormatting color = (EnumChatFormatting) remoteConfigs.get("messageColor");
 				boolean fireworks = remoteConfigs.getBoolean("fireworks");
 				
-				if (args != 0)
-				{
-					//Example for a custom feature \/
-					if (args == 1 && JEConfiguration.customModpackSlug.toLowerCase() == "the-1710-pack")
+					switch (args)
 					{
-						JSONObject packData = JsonReader.readJsonFromUrl("http://the-1710-pack.com/cache/pack_platform.json");
-						if (packData.getInt("downloads") >= 400000 && packData.getInt("downloads") <= 410000)
+					case 0: //Basic message \/
+						event.player.addChatMessage(new ChatComponentText(color + message));
+						if (fireworks && !JEConfiguration.specialLoginsFireworksDisabled)
 						{
-							event.player.addChatMessage(new ChatComponentText(EnumChatFormatting.AQUA.BOLD + "Thank you for 400,000 downloads!"));
-							if (fireworks && !JEConfiguration.specialLoginsFireworksDisabled)
-							{
-								//Fireworks here
-							}
+							//Fireworks here
 						}
+						break;
+						
+					case 1: //Bold message \/
+						event.player.addChatMessage(new ChatComponentText(color.BOLD + message));
+						if (fireworks && !JEConfiguration.specialLoginsFireworksDisabled)
+						{
+							//Fireworks here
+						}
+						break;
+						
+					case 2: //Custom feature \/
+						if (JEConfiguration.customModpackSlug.toLowerCase() == "the-1710-pack")
+						{
+							JSONObject packData = JsonReader.readJsonFromUrl("http://the-1710-pack.com/cache/pack_platform.json");
+							if (packData.getInt("downloads") >= 400000 && packData.getInt("downloads") <= 410000)
+								{
+									event.player.addChatMessage(new ChatComponentText(EnumChatFormatting.AQUA.BOLD + "Thank you for 400,000 downloads!"));
+									if (fireworks && !JEConfiguration.specialLoginsFireworksDisabled)
+									{
+										//Fireworks here
+									}
+								}
+						}
+						break;
+						
+					default:
+						Log.error("Jon's Exclusives remote configs' args for the set modpack slug are invalid");
+						break;
 					}
-				}
-				else
-				{
-					event.player.addChatMessage(new ChatComponentText(color + message));
-					if (fireworks && !JEConfiguration.specialLoginsFireworksDisabled)
-					{
-						//Fireworks here
-					}
-				}
 			}
 			else
 			{
-				Log.error("Jon's Exclusives' remote configs aren't online");
+				Log.error("Either the configurable modpack slug is invalid or Jon's Exclusives' remote configs are offline");
 			}
 		}
 	}
