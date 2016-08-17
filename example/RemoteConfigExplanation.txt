@@ -1,0 +1,8 @@
+{
+	"_comment": "Everything should be pretty straightforward, except args:
+	0: basic message (uses message as a string), and can enable fireworks as a boolean,
+	1: Special message (Thank you for x downloads!), can add colors as the normal message (has to use escaped color versions), for surpassing x (int) messages, to show up until y (int) is reached, for the specified slug
+	can be used only for all Technic modpacks,
+	
+	2+ or -1-: Unimplemented, would return an error in the log (won't crash)"
+}
