@@ -44,7 +44,7 @@ public class ClientPlayerEvents {
 							}
 							break;
 							
-						case 1: //1: Special message for surpassing x messages, to show up until y is reached
+						case 1: //1: Special message for surpassing x downloads, to show up until y downloads are reached
 							int x = remoteConfigs.getInt("x"), y = remoteConfigs.getInt("y");
 							JSONObject technicApiData = JsonReader.readJsonFromUrl(technicApiUrl);
 							int technicApiBuild = technicApiData.getInt("build");
