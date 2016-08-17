@@ -20,69 +20,54 @@ public class ClientPlayerEvents {
 	{
 		if (!JEConfiguration.specialLoginsDisabled)
 		{
-			String[] usedUrls = new String[3];
-			usedUrls[0] = "http://api.enderplay.com/pack/" + JEConfiguration.customModpackSlug + ".json";
-			usedUrls[1] = "http://the-1710-pack.com/cache/pack_platform.json";
-			usedUrls[2] = "http://mianite.us/cache/pack_platform.json";
+			String remoteConfigUrl =  JEConfiguration.urlForRemoteConfigs + JEConfiguration.customModpackSlug + ".json";
+			String technicApiUrl = "http://api.technicpack.net/launcher/version/stable4";
 			
-			if (UrlValidator.areUrlsValid(usedUrls))
+			if (UrlValidator.isUrlValid(remoteConfigUrl) && UrlValidator.isUrlValid(technicApiUrl))
 			{
-				JSONObject remoteConfigs = JsonReader.readJsonFromUrl(usedUrls[0]);
-				int args = remoteConfigs.getInt("args");
-				String message = remoteConfigs.getString("message");
-				boolean fireworks = remoteConfigs.getBoolean("fireworks");
+				JSONObject remoteConfigs = JsonReader.readJsonFromUrl(remoteConfigUrl);
+				boolean enabled = remoteConfigs.getBoolean("enabled");
 				
-					switch (args)
-					{
-					case 0: //Basic message \/
-						event.player.addChatMessage(new ChatComponentText(message));
-						if (fireworks && !JEConfiguration.specialLoginsFireworksDisabled)
+				if (enabled)
+				{
+					int args = remoteConfigs.getInt("args");
+					String message = remoteConfigs.getString("message");
+					boolean fireworks = remoteConfigs.getBoolean("fireworks");
+				
+						switch (args)
 						{
-							//Fireworks here
-						}
-						break;
-						
-					case 1: //Custom feature \/
-						switch (JEConfiguration.customModpackSlug.toLowerCase())
-						{
-						case "the-1710-pack":
-							JSONObject packData1 = JsonReader.readJsonFromUrl("http://the-1710-pack.com/cache/pack_platform.json");
-							if (packData1.getInt("downloads") >= 400000 && packData1.getInt("downloads") <= 410000)
-								{
-									event.player.addChatMessage(new ChatComponentText("§2§lThank you for 400,000 downloads!"));
-									if (fireworks && !JEConfiguration.specialLoginsFireworksDisabled)
-									{
-										//Fireworks here
-									}
-								}
+						case 0: //0: Basic message
+							event.player.addChatMessage(new ChatComponentText(message));
+							if (fireworks && !JEConfiguration.specialLoginsFireworksDisabled)
+							{
+								//Fireworks here
+							}
 							break;
-						
-						case "mianite":
-							JSONObject packData2 = JsonReader.readJsonFromUrl("http://mianite.us/cache/pack_platform.json");
-							if (packData2.getInt("downloads") >= 350000 && packData2.getInt("downloads") <= 355000)
+							
+						case 1: //1: Special message for surpassing x messages, to show up until x + y is reached
+							int x = remoteConfigs.getInt("x"), y = remoteConfigs.getInt("y");
+							JSONObject technicApiData = JsonReader.readJsonFromUrl(technicApiUrl);
+							int technicApiBuild = technicApiData.getInt("build");
+							JSONObject packData = JsonReader.readJsonFromUrl("http://api.technicpack.net/modpack/" + JEConfiguration.customModpackSlug + "?build=" + technicApiBuild);
+							if (packData.getInt("downloads") >= x && packData.getInt("downloads") <= y)
 								{
-									event.player.addChatMessage(new ChatComponentText("§2§lThank you for 350,000 downloads!"));
+									event.player.addChatMessage(new ChatComponentText(message + "Thank you for " + x + " downloads!"));
 									if (fireworks && !JEConfiguration.specialLoginsFireworksDisabled)
-									{
-										//Fireworks here
+										{
+											//Fireworks here
+										}
 									}
-								}
 							break;
-						
+							
 						default:
 							Log.error("Jon's Exclusives remote configs' args for the set modpack slug are invalid");
 							break;
 						}
-						break;
-						
-					default:
-						Log.error("Jon's Exclusives remote configs' args for the set modpack slug are invalid");
-						break;
-					}
+				}
 			}
-			else if (!JEConfiguration.customModpackSlug.isEmpty())
+			else
 			{
-				Log.error("Either the configurable modpack slug is invalid or Jon's Exclusives' remote configs are offline");
+				Log.error("Either Jon's Exclusives' remote configs for selected pack slug are down (check if it's correct), or Technic's API is down (or both)");
 			}
 		}
 	}

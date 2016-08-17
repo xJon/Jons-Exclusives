@@ -9,7 +9,7 @@ public class ClientProxy extends CommonProxy {
 	@Override
 	public void initCapes()
 	{
-		DevCapes.getInstance().registerConfig("put final url here");
+		DevCapes.getInstance().registerConfig("put final cape json file url here");
 	}
 	
 	@Override

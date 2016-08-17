@@ -13,8 +13,8 @@ public class UrlValidator {
 	        URL myurl = new URL(url);        
 	        connection = (HttpURLConnection) myurl.openConnection(); 
 	        connection.setRequestMethod("HEAD");         
-	        int time = connection.getResponseCode();        
-	        System.out.println(url + "responded after" + time); 
+	        int code = connection.getResponseCode();        
+	        Log.info(url + " returned respond code " + code); 
 	    }
 	    
 	    catch (Exception e)
