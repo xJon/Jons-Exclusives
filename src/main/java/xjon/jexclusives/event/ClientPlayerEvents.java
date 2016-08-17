@@ -20,46 +20,58 @@ public class ClientPlayerEvents {
 	{
 		if (!JEConfiguration.specialLoginsDisabled)
 		{
-			String url = "http://api.enderplay.com/pack/" + JEConfiguration.customModpackSlug + ".json";
+			String[] usedUrls = new String[3];
+			usedUrls[0] = "http://api.enderplay.com/pack/" + JEConfiguration.customModpackSlug + ".json";
+			usedUrls[1] = "http://the-1710-pack.com/cache/pack_platform.json";
+			usedUrls[2] = "http://mianite.us/cache/pack_platform.json";
 			
-			if (UrlValidator.isUrlValid(url))
+			if (UrlValidator.areUrlsValid(usedUrls))
 			{
-				JSONObject remoteConfigs = JsonReader.readJsonFromUrl(url);
+				JSONObject remoteConfigs = JsonReader.readJsonFromUrl(usedUrls[0]);
 				int args = remoteConfigs.getInt("args");
 				String message = remoteConfigs.getString("message");
-				EnumChatFormatting color = (EnumChatFormatting) remoteConfigs.get("messageColor");
 				boolean fireworks = remoteConfigs.getBoolean("fireworks");
 				
 					switch (args)
 					{
 					case 0: //Basic message \/
-						event.player.addChatMessage(new ChatComponentText(color + message));
+						event.player.addChatMessage(new ChatComponentText(message));
 						if (fireworks && !JEConfiguration.specialLoginsFireworksDisabled)
 						{
 							//Fireworks here
 						}
 						break;
 						
-					case 1: //Bold message \/
-						event.player.addChatMessage(new ChatComponentText(color.BOLD + message));
-						if (fireworks && !JEConfiguration.specialLoginsFireworksDisabled)
+					case 1: //Custom feature \/
+						switch (JEConfiguration.customModpackSlug.toLowerCase())
 						{
-							//Fireworks here
-						}
-						break;
-						
-					case 2: //Custom feature \/
-						if (JEConfiguration.customModpackSlug.toLowerCase() == "the-1710-pack")
-						{
-							JSONObject packData = JsonReader.readJsonFromUrl("http://the-1710-pack.com/cache/pack_platform.json");
-							if (packData.getInt("downloads") >= 400000 && packData.getInt("downloads") <= 410000)
+						case "the-1710-pack":
+							JSONObject packData1 = JsonReader.readJsonFromUrl("http://the-1710-pack.com/cache/pack_platform.json");
+							if (packData1.getInt("downloads") >= 400000 && packData1.getInt("downloads") <= 410000)
 								{
-									event.player.addChatMessage(new ChatComponentText(EnumChatFormatting.AQUA.BOLD + "Thank you for 400,000 downloads!"));
+									event.player.addChatMessage(new ChatComponentText("§2§lThank you for 400,000 downloads!"));
 									if (fireworks && !JEConfiguration.specialLoginsFireworksDisabled)
 									{
 										//Fireworks here
 									}
 								}
+							break;
+						
+						case "mianite":
+							JSONObject packData2 = JsonReader.readJsonFromUrl("http://mianite.us/cache/pack_platform.json");
+							if (packData2.getInt("downloads") >= 350000 && packData2.getInt("downloads") <= 355000)
+								{
+									event.player.addChatMessage(new ChatComponentText("§2§lThank you for 350,000 downloads!"));
+									if (fireworks && !JEConfiguration.specialLoginsFireworksDisabled)
+									{
+										//Fireworks here
+									}
+								}
+							break;
+						
+						default:
+							Log.error("Jon's Exclusives remote configs' args for the set modpack slug are invalid");
+							break;
 						}
 						break;
 						
@@ -68,7 +80,7 @@ public class ClientPlayerEvents {
 						break;
 					}
 			}
-			else
+			else if (!JEConfiguration.customModpackSlug.isEmpty())
 			{
 				Log.error("Either the configurable modpack slug is invalid or Jon's Exclusives' remote configs are offline");
 			}

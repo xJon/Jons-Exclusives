@@ -24,5 +24,16 @@ public class UrlValidator {
 	    
 	    return true;
 	}
+	
+	public static boolean areUrlsValid(String[] urls)
+	{
+	    for (int i = 0; i < urls.length; ++i)
+	    {
+	    	if (!isUrlValid(urls[i]))
+	    		return false;
+	    }
+	    
+	    return true;
+	}
 
 }
