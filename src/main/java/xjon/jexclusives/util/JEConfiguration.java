@@ -18,7 +18,7 @@ public class JEConfiguration {
 	
 	public static final String SPECIAL_LOGINS_ENABLED_NAME = "Disables all special logins features";
 	public static final String SPECIAL_LOGINS_FIREWORDS_NAME = "Forces fireworks to be disabled for special logins";
-	public static final String CUSTOM_MODPACK_SLUG_NAME = "Slug name of the modpack (Technic packs only)";
+	public static final String CUSTOM_MODPACK_SLUG_NAME = "Slug name of the modpack (Leave blank for non-Technic packs)";
 	public static final String URL_FOR_REMOTE_CONFIGS_NAME = "The URL of the remote .json configs";
 
 	public static final String MAIN = Configuration.CATEGORY_GENERAL + Configuration.CATEGORY_SPLITTER + "Main";
