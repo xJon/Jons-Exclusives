@@ -1,7 +1,7 @@
 {
 	"enabled": "true",
 	"message":"\u00A76",
-	"fireworks":"false",
+	"fireworks":"true",
 	"args":"1",
 	"x":"10000",
 	"y":"11000",

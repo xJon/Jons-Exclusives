@@ -20,21 +20,19 @@ public class ClientPlayerEvents {
 	{
 		if (!JEConfiguration.specialLoginsDisabled)
 		{
-			String remoteConfigUrl =  JEConfiguration.urlForRemoteConfigs + JEConfiguration.customModpackSlug + ".json";
+			String remoteConfigUrl =  JEConfiguration.urlForRemoteConfigs;
 			String technicApiUrl = "http://api.technicpack.net/launcher/version/stable4";
 			
 			if (UrlValidator.isUrlValid(remoteConfigUrl) && UrlValidator.isUrlValid(technicApiUrl))
 			{
 				JSONObject remoteConfigs = JsonReader.readJsonFromUrl(remoteConfigUrl);
-				boolean enabled = remoteConfigs.getBoolean("enabled");
 				
-				if (enabled)
+				if (remoteConfigs.getBoolean("enabled"))
 				{
-					int args = remoteConfigs.getInt("args");
 					String message = remoteConfigs.getString("message");
 					boolean fireworks = remoteConfigs.getBoolean("fireworks");
 				
-						switch (args)
+						switch (remoteConfigs.getInt("args"))
 						{
 						case 0: //0: Basic message
 							event.player.addChatMessage(new ChatComponentText(message));
@@ -44,14 +42,12 @@ public class ClientPlayerEvents {
 							}
 							break;
 							
-						case 1: //1: Special message for surpassing x downloads, to show up until y downloads are reached
-							int x = remoteConfigs.getInt("x"), y = remoteConfigs.getInt("y");
-							JSONObject technicApiData = JsonReader.readJsonFromUrl(technicApiUrl);
-							int technicApiBuild = technicApiData.getInt("build");
-							JSONObject packData = JsonReader.readJsonFromUrl("http://api.technicpack.net/modpack/" + JEConfiguration.customModpackSlug + "?build=" + technicApiBuild);
-							if (packData.getInt("downloads") >= x && packData.getInt("downloads") <= y)
+						case 1: //1: Special message for surpassing x downloads, to show up until y downloads are reached. Will work only if Technic's API work
+							JSONObject packData = JsonReader.readJsonFromUrl("http://api.technicpack.net/modpack/" + JEConfiguration.customModpackSlug + "?build=" + JsonReader.readJsonFromUrl(technicApiUrl).getInt("build"));
+							if (packData.getInt("downloads") >= remoteConfigs.getInt("x") && packData.getInt("downloads") <= remoteConfigs.getInt("y"))
 								{
-									event.player.addChatMessage(new ChatComponentText(message + "Thank you for " + x + " downloads!"));
+									event.player.addChatMessage(new ChatComponentText(message + "Thank you for " + remoteConfigs.getInt("x") + " downloads!"));
+									Log.info("DEBUG");
 									if (fireworks && !JEConfiguration.specialLoginsFireworksDisabled)
 										{
 											//Fireworks here
