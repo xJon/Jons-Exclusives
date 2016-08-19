@@ -2,7 +2,8 @@
 	"enabled": "true",
 	"message":"\u00A76Be sure to check out our server!",
 	"fireworks":"false",
-	"args":"0",
+	"mode":"0",
 	"x":"",
 	"y":"",
+	"capeurl":"https://raw.githubusercontent.com/xJon/Jons-Exclusives/master/example/SampleCapes.json"
 }

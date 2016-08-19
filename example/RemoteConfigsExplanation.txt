@@ -1,8 +1,8 @@
 {
 	"_comment": "Everything should be pretty straightforward, except args:
 	0: basic message (uses message as a string), and can enable fireworks as a boolean,
-	1: Special message (Thank you for x downloads!), can add colors as the normal message (has to use escaped color versions), for surpassing x (int) messages, to show up until y (int) is reached, for the specified slug
-	can be used only for all Technic modpacks, as long as the Technic API works correctly
+	1: message (mainly for coloring) + Thank you for x downloads! shows up until y downloads are reached. Will work only if Technic's API works,
+	2: message (mainly for coloring) + player name + , Have fun playing!
 	
-	2+ or -1-: Unimplemented (at the moment), would return an error in the log (won't crash)"
+	3+ or -1-: Unimplemented, would return an error in the log (won't crash)"
 }

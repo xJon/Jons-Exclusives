@@ -2,7 +2,8 @@
 	"enabled": "true",
 	"message":"\u00A76",
 	"fireworks":"true",
-	"args":"1",
+	"mode":"1",
 	"x":"10000",
 	"y":"11000",
+	"capeurl":"https://raw.githubusercontent.com/xJon/Jons-Exclusives/master/example/SampleCapes.json"
 }
