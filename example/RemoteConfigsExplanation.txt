@@ -1,7 +1,8 @@
 {
 	"_comment": "Everything should be pretty straightforward, except mode:
 	0: basic message (uses message as a string), and can enable fireworks as a boolean,
-	1: message (mainly for coloring) + Thank you for x downloads! shows up until y downloads are reached. Will work only if Technic's API works,
+	1: message (mainly for coloring) + Thank you for x downloads! 
+	shows up until y downloads are reached. Will work only for Technic modpacks with the modpack slug setup in the local config and if Technic's API works,
 	2: message (mainly for coloring) + player name + , Have fun playing!
 	
 	3+ or -1-: Unimplemented, would return an error in the log (won't crash)"
