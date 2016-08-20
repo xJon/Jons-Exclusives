@@ -1,3 +1,4 @@
 # Jons-Exclusives
-A custom mod for Minecraft used for Technic modpacks.
+A modpack utility mod made for Minecraft.
+
 More information soon.
