@@ -24,7 +24,7 @@ public class ClientProxy extends CommonProxy {
 				}
 				else
 				{
-					Log.error("Jon's Exclusives' remote configs' capeurl is down");
+					Log.error("Jon's Exclusives' remote configs' capeurl is either down or missing");
 				}
 			}
 			catch (Exception e) { }
