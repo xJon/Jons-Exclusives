@@ -1,4 +1,5 @@
-## Jon's Exclusives - A modpack utility mod made for Minecraft.
+## Jon's Exclusives
+###A modpack utility mod made for Minecraft.
 
 ####v1.0.0 for Minecraft 1.7.10 introduces:
 * Custom capes for donors, using the DeveloperCapes libraries, based on a remote json file (that can be hosted in GitHub, too)
