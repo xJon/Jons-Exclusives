@@ -9,7 +9,7 @@ import xjon.jexclusives.util.Log;
 import xjon.jexclusives.util.UrlValidator;
 
 public class ClientProxy extends CommonProxy {
-	
+		
 	@Override
 	public void initCapes()
 	{
@@ -19,6 +19,7 @@ public class ClientProxy extends CommonProxy {
 			{
 				if (UrlValidator.isUrlValid(JsonReader.readJsonFromUrl(JEConfiguration.urlForRemoteConfigs).getString("capeurl")))
 				{
+					Log.info("Loading custom capes...");
 					DevCapes.getInstance().registerConfig(JsonReader.readJsonFromUrl(JEConfiguration.urlForRemoteConfigs).getString("capeurl"));
 				}
 				else

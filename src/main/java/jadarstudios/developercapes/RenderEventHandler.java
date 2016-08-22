@@ -12,6 +12,7 @@ import jadarstudios.developercapes.user.UserManager;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraftforge.client.event.RenderPlayerEvent;
+import xjon.jexclusives.util.Log;
 
 /**
  * This is not the class you are looking for.
@@ -25,7 +26,7 @@ public class RenderEventHandler {
         AbstractClientPlayer player = (AbstractClientPlayer) event.entityPlayer;
 
         UserManager manager = UserManager.getInstance();
-        User user = manager.getUser(player.getCommandSenderName());
+        User user = manager.getUser(player.getUniqueID().toString());
         if (user == null) return;
 
         ICape cape = user.capes.get(0);

@@ -46,7 +46,6 @@ public class JECore
 	@EventHandler
 	public void PostInit(FMLPostInitializationEvent event)
 	{
-		Log.info("Loading custom capes...");
 		proxy.initCapes();
 	}
 	

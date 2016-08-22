@@ -15,6 +15,10 @@ public class UrlValidator {
 	        connection.setRequestMethod("HEAD");         
 	        int code = connection.getResponseCode();        
 	        Log.info(url + " returned respond code " + code); 
+	        if (code == 404)
+	        {
+	        	return false;
+	        }
 	    }
 	    
 	    catch (Exception e)
