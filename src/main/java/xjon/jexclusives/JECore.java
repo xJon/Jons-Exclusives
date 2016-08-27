@@ -12,6 +12,7 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.common.config.Configuration;
 import xjon.jexclusives.event.ConfigEvents;
+import xjon.jexclusives.event.PlayerEvents;
 import xjon.jexclusives.proxy.CommonProxy;
 import xjon.jexclusives.util.JEConfiguration;
 import xjon.jexclusives.util.Log;
@@ -35,7 +36,7 @@ public class JECore
 		config = new Configuration(new File("config/JonsExclusives.cfg"));
 		config.load();
 		JEConfiguration.syncConfig();
-		proxy.clientPlayerEvents();
+		FMLCommonHandler.instance().bus().register(new PlayerEvents());
 	}
 	
 	@EventHandler
