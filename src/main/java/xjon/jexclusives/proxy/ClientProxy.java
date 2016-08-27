@@ -2,7 +2,7 @@ package xjon.jexclusives.proxy;
 
 import cpw.mods.fml.common.FMLCommonHandler;
 import jadarstudios.developercapes.DevCapes;
-import xjon.jexclusives.event.PlayerEvents;
+import xjon.jexclusives.event.ClientPlayerEvents;
 import xjon.jexclusives.util.JEConfiguration;
 import xjon.jexclusives.util.JsonReader;
 import xjon.jexclusives.util.Log;
@@ -33,6 +33,12 @@ public class ClientProxy extends CommonProxy {
 		{
 			Log.error("Jon's Exclusives' remote configs for selected URL are down (check if it's correct)");
 		}
+	}
+	
+	@Override
+	public void clientPlayerEvents()
+	{
+		FMLCommonHandler.instance().bus().register(new ClientPlayerEvents());
 	}
 	
 }

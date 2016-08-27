@@ -4,4 +4,5 @@ public class CommonProxy {
 		
 	public void initCapes() { }
 	
+	public void clientPlayerEvents() { }
 }

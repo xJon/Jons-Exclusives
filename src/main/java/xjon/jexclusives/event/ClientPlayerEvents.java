@@ -13,7 +13,7 @@ import xjon.jexclusives.util.Log;
 import xjon.jexclusives.util.UrlValidator;
 
 
-public class PlayerEvents {
+public class ClientPlayerEvents {
 	
 	@SubscribeEvent
 	public void onPlayerLogin(PlayerLoggedInEvent event) throws Exception
