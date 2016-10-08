@@ -13,14 +13,12 @@ import xjon.jexclusives.util.JsonReader;
 import xjon.jexclusives.util.Log;
 import xjon.jexclusives.util.UrlValidator;
 
-import java.util.Objects;
-
-
 public class PlayerEvents {
 
 	private static int mode = -1;
-	private static int downloads = -1;
-	private static int neededDownloads = -1;
+	private static int downloadsMilestone = -1;
+	private static int upToDownloads = -1;
+	private static int currentDownloadAmount = -1;
 	private static boolean fireworksEnabled = false;
 	private static String message = "";
 
@@ -34,40 +32,44 @@ public class PlayerEvents {
 						String remoteConfigUrl = JEConfiguration.urlForRemoteConfigs;
 						String technicApiUrl = "http://api.technicpack.net/launcher/version/stable4";
 
-						if (UrlValidator.isUrlValid(remoteConfigUrl)) {
+						if (UrlValidator.isUrlValid(remoteConfigUrl)) 
+						{
 							JSONObject remoteConfigs = JsonReader.readJsonFromUrl(remoteConfigUrl);
 
-							if (remoteConfigs.getBoolean("enabled")) {
+							if (remoteConfigs.getBoolean("enabled")) 
+							{
 								message = remoteConfigs.getString("message");
 								fireworksEnabled = remoteConfigs.getBoolean("fireworks");
 								mode = remoteConfigs.getInt("mode");
 
-								switch (remoteConfigs.getInt("mode")) {
-									case 0: //0: basic message
-										break;
-
-									case 1: //1: message + Thank you for x downloads! shows up until y downloads are reached. Will work only if Technic's API works
-										if (!JEConfiguration.customModpackSlug.isEmpty() && UrlValidator.isUrlValid(technicApiUrl)) {
+								if (remoteConfigs.getInt("mode") == 1) 
+								{
+										//Store pack data if the mode is equal to 1
+										if (!JEConfiguration.customModpackSlug.isEmpty() && UrlValidator.isUrlValid(technicApiUrl)) 
+										{
 											JSONObject packData = JsonReader.readJsonFromUrl("http://api.technicpack.net/modpack/" + JEConfiguration.customModpackSlug + "?build=" + JsonReader.readJsonFromUrl(technicApiUrl).getInt("build"));
-											if (JEConfiguration.customModpackSlug.equals("the-1710-pack") && packData.getInt("downloads") == 0 && UrlValidator.isUrlValid("http://the-1710-pack.com/repo?api=true")) {
+											currentDownloadAmount = packData.getInt("downloads");
+											
+											if (currentDownloadAmount == 0 && JEConfiguration.customModpackSlug.equals("the-1710-pack") && UrlValidator.isUrlValid("http://the-1710-pack.com/repo?api=true"))
+											{
 												packData = JsonReader.readJsonFromUrl("http://the-1710-pack.com/repo?api=true");
+												currentDownloadAmount = packData.getInt("downloads");
 											}
 
-											if (packData.getInt("downloads") >= remoteConfigs.getInt("x") && packData.getInt("downloads") <= remoteConfigs.getInt("y")) {
-												downloads = remoteConfigs.getInt("x");
-												neededDownloads = remoteConfigs.getInt("y");
+											if (currentDownloadAmount >= remoteConfigs.getInt("x") && currentDownloadAmount <= remoteConfigs.getInt("y"))
+											{
+												downloadsMilestone = remoteConfigs.getInt("x");
+												upToDownloads = remoteConfigs.getInt("y");
 											}
-										} else {
+										} 
+										else 
+										{
 											Log.error("Either Technic's API is down, or Jon's Exclusives' remote configs' mode is set to 1, for Technic packs only, while local configs are set to non-Technic packs");
 										}
-										break;
-
-									case 2: //message (for coloring) + player name + Have fun playing!
-										break;
-
 								}
 							}
-						} else {
+						} else
+						{
 							Log.error("Jon's Exclusives' remote configs for selected URL are down (check if it's correct)");
 						}
 					}
@@ -82,24 +84,23 @@ public class PlayerEvents {
 	@SubscribeEvent
 	public void onPlayerLogin(PlayerLoggedInEvent event) throws Exception
 	{
-		switch (mode) {
-			case -1:
-				break;
-
-			case 0://0: basic message
+		switch (mode) 
+		{
+			case 0: //0: basic message
 				event.player.addChatMessage(new ChatComponentText(message));
 				Firework.Fireworks(fireworksEnabled, new BlockCoord(event.player), event.player.dimension);
 				break;
 
-			case 1://1: message + Thank you for x downloads! shows up until y downloads are reached. Will work only if Technic's API works
-				if(neededDownloads != -1 && downloads != -1) {
-					event.player.addChatMessage(new ChatComponentText(message + "Thank you for " + neededDownloads + " downloads!"));
+			case 1: //1: message + Thank you for x downloads! shows up until y downloads are reached. Will work only if Technic's API works
+				if (upToDownloads != -1 && downloadsMilestone != -1 && currentDownloadAmount != -1 && currentDownloadAmount <= upToDownloads)
+				{
+					event.player.addChatMessage(new ChatComponentText(message + "Thank you for " + downloadsMilestone + " downloads!"));
 					Firework.Fireworks(fireworksEnabled, new BlockCoord(event.player), event.player.dimension);
 				}
 				break;
 
-			case 2://message (for coloring) + player name + Have fun playing!
-				event.player.addChatComponentMessage(new ChatComponentText(message + event.player.getDisplayName() + ", Have fun playing!"));
+			case 2: //message (for coloring) + player name + Have fun playing!
+				event.player.addChatComponentMessage(new ChatComponentText(message + event.player.getDisplayName() + ", have fun playing!"));
 				Firework.Fireworks(fireworksEnabled, new BlockCoord(event.player), event.player.dimension);
 				break;
 
