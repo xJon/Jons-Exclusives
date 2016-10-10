@@ -4,10 +4,10 @@
  * (https://raw.github.com/jadar/DeveloperCapes/master/LICENSE)
  * version 4.0.0.x
  */
-package jadarstudios.developercapes.user;
+package xjon.developercapes.user;
 
-import jadarstudios.developercapes.DevCapes;
-import jadarstudios.developercapes.cape.CapeManager;
+import xjon.developercapes.DevCapes;
+import xjon.developercapes.cape.CapeManager;
 
 import java.util.ArrayList;
 import java.util.Collection;

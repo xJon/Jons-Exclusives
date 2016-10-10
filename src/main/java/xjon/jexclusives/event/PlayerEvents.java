@@ -1,17 +1,16 @@
 package xjon.jexclusives.event;
 
+import com.google.common.base.Charsets;
+import com.google.common.io.Resources;
+import com.google.gson.Gson;
 import cpw.mods.fml.common.event.FMLServerStartedEvent;
-import org.json.JSONObject;
-
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
 import net.minecraft.util.ChatComponentText;
-import xjon.jexclusives.util.BlockCoord;
-import xjon.jexclusives.util.Firework;
-import xjon.jexclusives.util.JEConfiguration;
-import xjon.jexclusives.util.JsonReader;
-import xjon.jexclusives.util.Log;
-import xjon.jexclusives.util.UrlValidator;
+import xjon.jexclusives.util.*;
+
+import java.net.URL;
+import java.util.HashMap;
 
 public class PlayerEvents {
 
@@ -21,6 +20,26 @@ public class PlayerEvents {
 	private static int currentDownloadAmount = -1;
 	private static boolean fireworksEnabled = false;
 	private static String message = "";
+
+
+	public static class PackJson {
+		boolean enabled;
+		String message;
+		boolean fireworks;
+		int mode;
+		int x;
+		int y;
+		public String capeurl;
+	}
+
+	static class TechnicApiData {
+		int build;
+		HashMap<String, String> url;
+	}
+
+	static class TechnicModpackApiData {
+		int downloads;
+	}
 
 	@SubscribeEvent
 	public void onServerStart(FMLServerStartedEvent event) throws Exception {
@@ -34,32 +53,34 @@ public class PlayerEvents {
 
 						if (UrlValidator.isUrlValid(remoteConfigUrl)) 
 						{
-							JSONObject remoteConfigs = JsonReader.readJsonFromUrl(remoteConfigUrl);
+							PackJson remoteConfigs = new Gson().fromJson(Resources.toString(new URL(remoteConfigUrl), Charsets.UTF_8), PackJson.class);
 
-							if (remoteConfigs.getBoolean("enabled")) 
+							if (remoteConfigs.enabled)
 							{
-								message = remoteConfigs.getString("message");
-								fireworksEnabled = remoteConfigs.getBoolean("fireworks");
-								mode = remoteConfigs.getInt("mode");
+								message = remoteConfigs.message;
+								fireworksEnabled = remoteConfigs.fireworks;
+								mode = remoteConfigs.mode;
 
-								if (remoteConfigs.getInt("mode") == 1) 
+								if (remoteConfigs.mode == 1)
 								{
 										//Store pack data if the mode is equal to 1
 										if (!JEConfiguration.customModpackSlug.isEmpty() && UrlValidator.isUrlValid(technicApiUrl)) 
 										{
-											JSONObject packData = JsonReader.readJsonFromUrl("http://api.technicpack.net/modpack/" + JEConfiguration.customModpackSlug + "?build=" + JsonReader.readJsonFromUrl(technicApiUrl).getInt("build"));
-											currentDownloadAmount = packData.getInt("downloads");
+											TechnicApiData technicApiData = new Gson().fromJson(Resources.toString(new URL(technicApiUrl), Charsets.UTF_8), TechnicApiData.class);
+											TechnicModpackApiData packData = new Gson().fromJson(Resources.toString(new URL("http://api.technicpack.net/modpack/" + JEConfiguration.customModpackSlug + "?build=" + technicApiData.build), Charsets.UTF_8), TechnicModpackApiData.class
+											);
+											currentDownloadAmount = packData.downloads;
 											
 											if (currentDownloadAmount == 0 && JEConfiguration.customModpackSlug.equals("the-1710-pack") && UrlValidator.isUrlValid("http://the-1710-pack.com/repo?api=true"))
 											{
-												packData = JsonReader.readJsonFromUrl("http://the-1710-pack.com/repo?api=true");
-												currentDownloadAmount = packData.getInt("downloads");
+												packData = new Gson().fromJson(Resources.toString(new URL("http://the-1710-pack.com/repo?api=true"), Charsets.UTF_8), TechnicModpackApiData.class);
+												currentDownloadAmount = packData.downloads;
 											}
 
-											if (currentDownloadAmount >= remoteConfigs.getInt("x") && currentDownloadAmount <= remoteConfigs.getInt("y"))
+											if (currentDownloadAmount >= remoteConfigs.x && currentDownloadAmount <= remoteConfigs.y)
 											{
-												downloadsMilestone = remoteConfigs.getInt("x");
-												upToDownloads = remoteConfigs.getInt("y");
+												downloadsMilestone = remoteConfigs.x;
+												upToDownloads = remoteConfigs.y;
 											}
 										} 
 										else 

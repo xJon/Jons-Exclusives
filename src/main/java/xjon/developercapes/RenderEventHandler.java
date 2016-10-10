@@ -4,15 +4,14 @@
  * (https://raw.github.com/jadar/DeveloperCapes/master/LICENSE)
  * version 4.0.0.x
  */
-package jadarstudios.developercapes;
+package xjon.developercapes;
 
-import jadarstudios.developercapes.cape.ICape;
-import jadarstudios.developercapes.user.User;
-import jadarstudios.developercapes.user.UserManager;
+import xjon.developercapes.cape.ICape;
+import xjon.developercapes.user.User;
+import xjon.developercapes.user.UserManager;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraftforge.client.event.RenderPlayerEvent;
-import xjon.jexclusives.util.Log;
 
 /**
  * This is not the class you are looking for.
