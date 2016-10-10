@@ -4,7 +4,7 @@
  * (https://raw.github.com/jadar/DeveloperCapes/master/LICENSE)
  * version 4.0.0.x
  */
-package jadarstudios.developercapes.cape;
+package xjon.developercapes.cape;
 
 import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.client.renderer.texture.ITextureObject;

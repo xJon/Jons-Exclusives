@@ -4,21 +4,18 @@
  * (https://raw.github.com/jadar/DeveloperCapes/master/LICENSE)
  * version 4.0.0.x
  */
-package jadarstudios.developercapes.cape;
+package xjon.developercapes.cape;
 
 import com.google.common.collect.HashBiMap;
 import com.google.common.primitives.UnsignedBytes;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
-import jadarstudios.developercapes.DevCapes;
-import jadarstudios.developercapes.user.Group;
-import jadarstudios.developercapes.user.GroupManager;
-import jadarstudios.developercapes.user.User;
-import jadarstudios.developercapes.user.UserManager;
-import org.apache.commons.lang3.ObjectUtils;
+import xjon.developercapes.DevCapes;
+import xjon.developercapes.user.Group;
+import xjon.developercapes.user.GroupManager;
+import xjon.developercapes.user.User;
+import xjon.developercapes.user.UserManager;
 
-import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.BitSet;

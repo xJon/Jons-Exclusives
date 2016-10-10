@@ -4,10 +4,10 @@
  * (https://raw.github.com/jadar/DeveloperCapes/master/LICENSE)
  * version 4.0.0.x
  */
-package jadarstudios.developercapes;
+package xjon.developercapes;
 
-import jadarstudios.developercapes.cape.CapeConfig;
-import jadarstudios.developercapes.cape.CapeConfigManager;
+import xjon.developercapes.cape.CapeConfig;
+import xjon.developercapes.cape.CapeConfigManager;
 import net.minecraftforge.common.MinecraftForge;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

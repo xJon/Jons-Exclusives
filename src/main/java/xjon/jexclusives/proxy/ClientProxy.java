@@ -1,12 +1,15 @@
 package xjon.jexclusives.proxy;
 
-import cpw.mods.fml.common.FMLCommonHandler;
-import jadarstudios.developercapes.DevCapes;
+import com.google.common.base.Charsets;
+import com.google.common.io.Resources;
+import com.google.gson.Gson;
+import xjon.developercapes.DevCapes;
 import xjon.jexclusives.event.PlayerEvents;
 import xjon.jexclusives.util.JEConfiguration;
-import xjon.jexclusives.util.JsonReader;
 import xjon.jexclusives.util.Log;
 import xjon.jexclusives.util.UrlValidator;
+
+import java.net.URL;
 
 public class ClientProxy extends CommonProxy {
 		
@@ -17,10 +20,12 @@ public class ClientProxy extends CommonProxy {
 		{
 			try
 			{
-				if (UrlValidator.isUrlValid(JsonReader.readJsonFromUrl(JEConfiguration.urlForRemoteConfigs).getString("capeurl")))
+				PlayerEvents.PackJson remoteConfigs = new Gson().fromJson(Resources.toString(new URL(JEConfiguration.urlForRemoteConfigs), Charsets.UTF_8), PlayerEvents.PackJson.class);
+
+				if (remoteConfigs.capeurl != null)
 				{
 					Log.info("Loading custom capes...");
-					DevCapes.getInstance().registerConfig(JsonReader.readJsonFromUrl(JEConfiguration.urlForRemoteConfigs).getString("capeurl"));
+					DevCapes.getInstance().registerConfig(remoteConfigs.capeurl);
 				}
 				else
 				{

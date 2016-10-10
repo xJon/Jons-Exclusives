@@ -4,9 +4,9 @@
  * (https://raw.github.com/jadar/DeveloperCapes/master/LICENSE)
  * version 4.0.0.x
  */
-package jadarstudios.developercapes.user;
+package xjon.developercapes.user;
 
-import jadarstudios.developercapes.cape.ICape;
+import xjon.developercapes.cape.ICape;
 
 import java.util.HashMap;
 import java.util.Set;

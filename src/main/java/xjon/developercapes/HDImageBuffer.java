@@ -4,7 +4,7 @@
  * (https://raw.github.com/jadar/DeveloperCapes/master/LICENSE)
  * version 3.3.0.0
  */
-package jadarstudios.developercapes;
+package xjon.developercapes;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;

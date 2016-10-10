@@ -4,9 +4,9 @@
  * (https://raw.github.com/jadar/DeveloperCapes/master/LICENSE)
  * version 4.0.0.x
  */
-package jadarstudios.developercapes.cape;
+package xjon.developercapes.cape;
 
-import jadarstudios.developercapes.DevCapes;
+import xjon.developercapes.DevCapes;
 
 import java.net.MalformedURLException;
 import java.net.URL;

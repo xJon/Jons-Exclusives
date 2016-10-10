@@ -4,9 +4,9 @@
  * (https://raw.github.com/jadar/DeveloperCapes/master/LICENSE)
  * version 4.0.0.x
  */
-package jadarstudios.developercapes.cape;
+package xjon.developercapes.cape;
 
-import jadarstudios.developercapes.HDImageBuffer;
+import xjon.developercapes.HDImageBuffer;
 import com.mojang.authlib.minecraft.MinecraftProfileTexture;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.AbstractClientPlayer;
