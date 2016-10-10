@@ -15,7 +15,6 @@ import xjon.jexclusives.event.ConfigEvents;
 import xjon.jexclusives.event.PlayerEvents;
 import xjon.jexclusives.proxy.CommonProxy;
 import xjon.jexclusives.util.JEConfiguration;
-import xjon.jexclusives.util.Log;
 import xjon.jexclusives.util.Reference;
 
 @Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.VERSION, guiFactory = Reference.GUI_FACTORY)
@@ -42,6 +41,7 @@ public class JECore
 	@EventHandler
 	public void Init(FMLInitializationEvent event)
 	{
+		PlayerEvents.fetchData();
 		FMLCommonHandler.instance().bus().register(new ConfigEvents());
 	}
 	@EventHandler

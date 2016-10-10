@@ -3,6 +3,7 @@ package xjon.jexclusives.event;
 import com.google.common.base.Charsets;
 import com.google.common.io.Resources;
 import com.google.gson.Gson;
+import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.event.FMLServerStartedEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
@@ -41,8 +42,7 @@ public class PlayerEvents {
 		int downloads;
 	}
 
-	@SubscribeEvent
-	public void onServerStart(FMLServerStartedEvent event) throws Exception {
+	public static void fetchData() {
 		Thread thread = new Thread() {
 			@Override
 			public void run() {
