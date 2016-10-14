@@ -1,0 +1,9 @@
+{
+enabled: "true",
+message: "§6",
+fireworks: "true",
+mode: "1",
+x: "430000",
+y: "440000",
+capeurl: "https://raw.githubusercontent.com/xJon/Jons-Exclusives/master/example/SampleCapes.json"
+}
