@@ -1,9 +1,9 @@
 package xjon.jexclusives.gui;
 
-import cpw.mods.fml.client.config.GuiConfig;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraftforge.common.config.ConfigElement;
 import net.minecraftforge.common.config.Configuration;
+import net.minecraftforge.fml.client.config.GuiConfig;
 import xjon.jexclusives.JECore;
 import xjon.jexclusives.util.Reference;
 

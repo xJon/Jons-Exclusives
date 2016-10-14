@@ -1,7 +1,7 @@
 package xjon.jexclusives.event;
 
-import cpw.mods.fml.client.event.ConfigChangedEvent;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.client.event.ConfigChangedEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import xjon.jexclusives.util.JEConfiguration;
 import xjon.jexclusives.util.Log;
 import xjon.jexclusives.util.Reference;

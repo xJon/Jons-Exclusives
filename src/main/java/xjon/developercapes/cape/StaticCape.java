@@ -6,14 +6,16 @@
  */
 package xjon.developercapes.cape;
 
-import xjon.developercapes.HDImageBuffer;
-import com.mojang.authlib.minecraft.MinecraftProfileTexture;
+import java.lang.reflect.Field;
+import java.net.URL;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.AbstractClientPlayer;
+import net.minecraft.client.network.NetworkPlayerInfo;
 import net.minecraft.client.renderer.ThreadDownloadImageData;
 import net.minecraft.util.ResourceLocation;
-
-import java.net.URL;
+import xjon.developercapes.DevCapes;
+import xjon.developercapes.HDImageBuffer;
 
 /**
  * Default Cape implementation
@@ -34,7 +36,22 @@ public class StaticCape extends AbstractCape {
     @Override
     public void loadTexture(AbstractClientPlayer player) {
         ResourceLocation location = this.getLocation();
-        player.func_152121_a(MinecraftProfileTexture.Type.CAPE, location);
+
+        try {
+            Field playerInfoF = AbstractClientPlayer.class.getDeclaredField("playerInfo");
+            playerInfoF.setAccessible(true);
+            NetworkPlayerInfo nci = (NetworkPlayerInfo) playerInfoF.get(player);
+
+            Field locationCapeF = NetworkPlayerInfo.class.getDeclaredField("locationCape");
+            locationCapeF.setAccessible(true);
+            locationCapeF.set(nci, location);
+
+            playerInfoF.setAccessible(false);
+            locationCapeF.setAccessible(false);
+        } catch (Exception e) {
+            e.printStackTrace();
+            DevCapes.getInstance().logger.error("Setting cape ResourceLocation failed!");
+        }
 
         Minecraft.getMinecraft().renderEngine.loadTexture(location, this.getTexture());
     }

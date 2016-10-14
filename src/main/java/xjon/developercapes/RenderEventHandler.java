@@ -9,9 +9,9 @@ package xjon.developercapes;
 import xjon.developercapes.cape.ICape;
 import xjon.developercapes.user.User;
 import xjon.developercapes.user.UserManager;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraftforge.client.event.RenderPlayerEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 /**
  * This is not the class you are looking for.
@@ -21,7 +21,7 @@ import net.minecraftforge.client.event.RenderPlayerEvent;
 public class RenderEventHandler {
 
     @SubscribeEvent
-    public void renderPlayer(RenderPlayerEvent.Specials.Pre event) {
+    public void renderPlayer(RenderPlayerEvent.Pre event) {
         AbstractClientPlayer player = (AbstractClientPlayer) event.entityPlayer;
 
         UserManager manager = UserManager.getInstance();

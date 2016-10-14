@@ -2,14 +2,11 @@ package xjon.jexclusives.gui;
 
 import java.util.Set;
 
-import cpw.mods.fml.client.IModGuiFactory;
-import cpw.mods.fml.client.config.GuiConfig;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
-import net.minecraftforge.common.config.ConfigElement;
-import net.minecraftforge.common.config.Configuration;
-import xjon.jexclusives.JECore;
-import xjon.jexclusives.util.Reference;
+import net.minecraftforge.fml.client.IModGuiFactory;
+import net.minecraftforge.fml.client.IModGuiFactory.RuntimeOptionCategoryElement;
+import net.minecraftforge.fml.client.IModGuiFactory.RuntimeOptionGuiHandler;
 
 public class JEGuiFactory implements IModGuiFactory {
 

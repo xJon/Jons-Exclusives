@@ -6,12 +6,12 @@
  */
 package xjon.developercapes;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.client.renderer.IImageBuffer;
-
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
+
+import net.minecraft.client.renderer.IImageBuffer;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 /**
  * This class is an implementation of {@link IImageBuffer} that allows capes to be in HD
@@ -37,5 +37,5 @@ public class HDImageBuffer implements IImageBuffer {
     }
 
     @Override
-    public void func_152634_a() {}
+    public void skinAvailable() {}
 }

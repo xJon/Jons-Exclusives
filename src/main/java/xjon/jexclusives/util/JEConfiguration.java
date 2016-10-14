@@ -1,7 +1,8 @@
 package xjon.jexclusives.util;
 
-import cpw.mods.fml.common.FMLCommonHandler;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import xjon.jexclusives.JECore;
 
 public class JEConfiguration {
@@ -25,7 +26,7 @@ public class JEConfiguration {
 
 	public static void syncConfig()
 	{
-		FMLCommonHandler.instance().bus().register(JECore.instance);
+		MinecraftForge.EVENT_BUS.register(JECore.instance);
 		
 		specialLoginsDisabled = JECore.config.get(MAIN, SPECIAL_LOGINS_ENABLED_NAME, SPECIAL_LOGINS_ENABLED_DEFAULT).getBoolean(SPECIAL_LOGINS_ENABLED_DEFAULT);
 		specialLoginsFireworksDisabled = JECore.config.get(MAIN, SPECIAL_LOGINS_FIREWORDS_NAME, SPECIAL_LOGINS_FIREWORKS_ENABLED_DEFAULT).getBoolean(SPECIAL_LOGINS_FIREWORKS_ENABLED_DEFAULT);

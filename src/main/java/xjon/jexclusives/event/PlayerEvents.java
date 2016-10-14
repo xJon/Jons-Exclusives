@@ -1,17 +1,20 @@
 package xjon.jexclusives.event;
 
+import java.net.URL;
+import java.util.HashMap;
+
 import com.google.common.base.Charsets;
 import com.google.common.io.Resources;
 import com.google.gson.Gson;
-import cpw.mods.fml.common.Mod;
-import cpw.mods.fml.common.event.FMLServerStartedEvent;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
-import net.minecraft.util.ChatComponentText;
-import xjon.jexclusives.util.*;
 
-import java.net.URL;
-import java.util.HashMap;
+import net.minecraft.util.ChatComponentText;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
+import xjon.jexclusives.util.BlockCoord;
+import xjon.jexclusives.util.Firework;
+import xjon.jexclusives.util.JEConfiguration;
+import xjon.jexclusives.util.Log;
+import xjon.jexclusives.util.UrlValidator;
 
 public class PlayerEvents {
 
@@ -67,10 +70,11 @@ public class PlayerEvents {
 										if (!JEConfiguration.customModpackSlug.isEmpty() && UrlValidator.isUrlValid(technicApiUrl)) 
 										{
 											TechnicApiData technicApiData = new Gson().fromJson(Resources.toString(new URL(technicApiUrl), Charsets.UTF_8), TechnicApiData.class);
-											TechnicModpackApiData packData = new Gson().fromJson(Resources.toString(new URL("http://api.technicpack.net/modpack/" + JEConfiguration.customModpackSlug + "?build=" + technicApiData.build), Charsets.UTF_8), TechnicModpackApiData.class
-											);
+											TechnicModpackApiData packData = new Gson().fromJson(Resources.toString(new URL("http://api.technicpack.net/modpack/" + JEConfiguration.customModpackSlug + "?build=" + technicApiData.build), Charsets.UTF_8), TechnicModpackApiData.class);
+											
 											currentDownloadAmount = packData.downloads;
 											
+											//Use backup if needed
 											if (currentDownloadAmount == 0 && JEConfiguration.customModpackSlug.equals("the-1710-pack") && UrlValidator.isUrlValid("http://the-1710-pack.com/repo?api=true"))
 											{
 												packData = new Gson().fromJson(Resources.toString(new URL("http://the-1710-pack.com/repo?api=true"), Charsets.UTF_8), TechnicModpackApiData.class);
