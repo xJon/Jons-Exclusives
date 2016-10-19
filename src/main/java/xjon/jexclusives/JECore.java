@@ -18,7 +18,7 @@ import xjon.jexclusives.proxy.CommonProxy;
 import xjon.jexclusives.util.JEConfiguration;
 import xjon.jexclusives.util.Reference;
 
-@Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.VERSION, guiFactory = Reference.GUI_FACTORY)
+@Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.VERSION, guiFactory = Reference.GUI_FACTORY, acceptedMinecraftVersions = Reference.ACCEPTED_VERSIONS)
 public class JECore
 {
 	
