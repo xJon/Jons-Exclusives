@@ -7,7 +7,7 @@
 
 <a name="features"/>
 ###Features:
-#####v1.0.1 for Minecraft 1.7.10 introduces:
+#####v1.0.1 for Minecraft 1.7.10/1.8.9/1.10.2 introduces:
 * Custom capes for donors, using the DeveloperCapes libraries, based on a remote cape json file (that can be hosted in GitHub, too)
 * Custom player login events for special times, with optional fireworks, and optional automatic messages for surpassing x amounts of downloads (for Technic modpacks only) - all client sided.
 
@@ -25,4 +25,4 @@ For coloring and formatting use MOTD codes in the message string, specified [her
 <a name="serverSideClientSide"/>
 ###Server side, client side
 * For the cape feature only, the mod does not have to be installed server-side. You can see others capes, even if playing in servers without the mod, as long as you all have the same cape json file (that can be found in the `example` package).
-* For the custom login events feature, the mod does have to be installed server-side unfortunately due to Minecraft 1.7.10 limitations. That being said, it can be fully controllable through the server's configuration file.
+* For the custom login events feature, the mod does have to be installed server-side unfortunately due to Minecraft limitations. That being said, it can be fully controllable through the server's configuration file.
