@@ -33,16 +33,31 @@ public class StaticCape extends AbstractCape {
         this(name, null);
     }
 
+	/**
+	 * Thank you mmdanggg2!
+	 */
     @Override
     public void loadTexture(AbstractClientPlayer player) {
-        ResourceLocation location = this.getLocation();
+    	ResourceLocation location = this.getLocation();
 
         try {
-            Field playerInfoF = AbstractClientPlayer.class.getDeclaredField("playerInfo");
+        	Field playerInfoF;
+        	try {
+        		playerInfoF = AbstractClientPlayer.class.getDeclaredField("playerInfo");
+        	}
+        	catch(NoSuchFieldException e) {
+            	playerInfoF = AbstractClientPlayer.class.getDeclaredField("field_175157_a");
+            }
             playerInfoF.setAccessible(true);
             NetworkPlayerInfo nci = (NetworkPlayerInfo) playerInfoF.get(player);
-
-            Field locationCapeF = NetworkPlayerInfo.class.getDeclaredField("locationCape");
+            
+            Field locationCapeF;
+            try {
+            	locationCapeF = NetworkPlayerInfo.class.getDeclaredField("locationCape");
+            }
+            catch(NoSuchFieldException e) {
+            	locationCapeF = NetworkPlayerInfo.class.getDeclaredField("field_178862_f");
+            }
             locationCapeF.setAccessible(true);
             locationCapeF.set(nci, location);
 
@@ -50,7 +65,7 @@ public class StaticCape extends AbstractCape {
             locationCapeF.setAccessible(false);
         } catch (Exception e) {
             e.printStackTrace();
-            DevCapes.getInstance().logger.error("Setting cape ResourceLocation failed!");
+            DevCapes.logger.error("Setting cape ResourceLocation failed!");
         }
 
         Minecraft.getMinecraft().renderEngine.loadTexture(location, this.getTexture());
