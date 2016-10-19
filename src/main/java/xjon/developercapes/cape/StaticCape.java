@@ -8,12 +8,16 @@ package xjon.developercapes.cape;
 
 import java.lang.reflect.Field;
 import java.net.URL;
+import java.util.Map;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.client.network.NetworkPlayerInfo;
 import net.minecraft.client.renderer.ThreadDownloadImageData;
 import net.minecraft.util.ResourceLocation;
+
+import com.mojang.authlib.minecraft.MinecraftProfileTexture.Type;
+
 import xjon.developercapes.DevCapes;
 import xjon.developercapes.HDImageBuffer;
 
@@ -40,29 +44,21 @@ public class StaticCape extends AbstractCape {
     public void loadTexture(AbstractClientPlayer player) {
     	ResourceLocation location = this.getLocation();
 
-        try {
-        	Field playerInfoF;
+    	try {
+            NetworkPlayerInfo npi = Minecraft.getMinecraft().getConnection().getPlayerInfo(player.getUniqueID());
+            Field plrTxtrsF;
         	try {
-        		playerInfoF = AbstractClientPlayer.class.getDeclaredField("getPlayerInfo");
+        		plrTxtrsF = NetworkPlayerInfo.class.getDeclaredField("playerTextures");
         	}
         	catch(NoSuchFieldException e) {
-            	playerInfoF = AbstractClientPlayer.class.getDeclaredField("func_175155_b");
+        		plrTxtrsF = NetworkPlayerInfo.class.getDeclaredField("field_187107_a");
             }
-            playerInfoF.setAccessible(true);
-            NetworkPlayerInfo nci = (NetworkPlayerInfo) playerInfoF.get(player);
-            
-            Field locationCapeF;
-            try {
-            	locationCapeF = NetworkPlayerInfo.class.getDeclaredField("playerTextures");
-            }
-            catch(NoSuchFieldException e) {
-            	locationCapeF = NetworkPlayerInfo.class.getDeclaredField("field_187107_a");
-            }
-            locationCapeF.setAccessible(true);
-            locationCapeF.set(nci, location);
-
-            playerInfoF.setAccessible(false);
-            locationCapeF.setAccessible(false);
+        	plrTxtrsF.setAccessible(true);
+        	@SuppressWarnings("unchecked")
+			Map<Type, ResourceLocation> plrTxtrs = (Map<Type, ResourceLocation>) plrTxtrsF.get(npi);
+        	plrTxtrs.put(Type.CAPE, location);
+        	plrTxtrsF.setAccessible(false);
+        	
         } catch (Exception e) {
             e.printStackTrace();
             DevCapes.logger.error("Setting cape ResourceLocation failed!");
