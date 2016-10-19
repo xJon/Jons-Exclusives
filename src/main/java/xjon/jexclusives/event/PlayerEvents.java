@@ -7,7 +7,7 @@ import com.google.common.base.Charsets;
 import com.google.common.io.Resources;
 import com.google.gson.Gson;
 
-import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.text.TextComponentString;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
 import xjon.jexclusives.util.BlockCoord;
@@ -112,20 +112,20 @@ public class PlayerEvents {
 		switch (mode) 
 		{
 			case 0: //0: basic message
-				event.player.addChatMessage(new ChatComponentText(message));
+				event.player.addChatComponentMessage(new TextComponentString(message));
 				Firework.Fireworks(fireworksEnabled, new BlockCoord(event.player), event.player.dimension);
 				break;
 
 			case 1: //1: message + Thank you for x downloads! shows up until y downloads are reached. Will work only if Technic's API works
 				if (upToDownloads != -1 && downloadsMilestone != -1 && currentDownloadAmount != -1 && currentDownloadAmount <= upToDownloads)
 				{
-					event.player.addChatMessage(new ChatComponentText(message + "Thank you for " + downloadsMilestone + " downloads!"));
+					event.player.addChatComponentMessage(new TextComponentString(message + "Thank you for " + downloadsMilestone + " downloads!"));
 					Firework.Fireworks(fireworksEnabled, new BlockCoord(event.player), event.player.dimension);
 				}
 				break;
 
 			case 2: //message (for coloring) + player name + Have fun playing!
-				event.player.addChatComponentMessage(new ChatComponentText(message + event.player.getDisplayName() + ", have fun playing!"));
+				event.player.addChatComponentMessage(new TextComponentString(message + event.player.getDisplayName() + ", have fun playing!"));
 				Firework.Fireworks(fireworksEnabled, new BlockCoord(event.player), event.player.dimension);
 				break;
 

@@ -43,20 +43,20 @@ public class StaticCape extends AbstractCape {
         try {
         	Field playerInfoF;
         	try {
-        		playerInfoF = AbstractClientPlayer.class.getDeclaredField("playerInfo");
+        		playerInfoF = AbstractClientPlayer.class.getDeclaredField("getPlayerInfo");
         	}
         	catch(NoSuchFieldException e) {
-            	playerInfoF = AbstractClientPlayer.class.getDeclaredField("field_175157_a");
+            	playerInfoF = AbstractClientPlayer.class.getDeclaredField("func_175155_b");
             }
             playerInfoF.setAccessible(true);
             NetworkPlayerInfo nci = (NetworkPlayerInfo) playerInfoF.get(player);
             
             Field locationCapeF;
             try {
-            	locationCapeF = NetworkPlayerInfo.class.getDeclaredField("locationCape");
+            	locationCapeF = NetworkPlayerInfo.class.getDeclaredField("playerTextures");
             }
             catch(NoSuchFieldException e) {
-            	locationCapeF = NetworkPlayerInfo.class.getDeclaredField("field_178862_f");
+            	locationCapeF = NetworkPlayerInfo.class.getDeclaredField("field_187107_a");
             }
             locationCapeF.setAccessible(true);
             locationCapeF.set(nci, location);
