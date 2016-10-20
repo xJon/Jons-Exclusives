@@ -25,7 +25,7 @@ For coloring and formatting use MOTD codes in the message string, specified [her
 
 <a name="serverSideClientSide"/>
 ###Server side, client side
-* For the cape feature only, the mod does not have to be installed server-side. You can see others capes, even if playing in servers without the mod, as long as you all have the same cape json file (that can be found in the `example` package).
+* For the cape feature only, the mod does not have to be installed server-side. You can see other's capes, even if playing in servers without the mod, as long as you all have the same cape json file (that can be found in the `example` package).
 * For the custom login events feature, the mod does have to be installed server-side unfortunately due to Minecraft limitations. That being said, it can be fully controllable through the server's configuration file.
 
 <a name="customCapeDesign"/>
