@@ -14,7 +14,7 @@
 
 <a name="howToUse"/>
 ###How to use:
-#####Check out `example` for an example of the local configs (.cfg that you put in modpacks), the remote configs (.json), and the remote cape file (.json), (both stored online). The remote configs have a few modes, as followed:
+#####Check out [`example`](https://github.com/xJon/Jons-Exclusives/tree/1.9.4/1.10.2/example) for an example of the local configs (.cfg that you put in modpacks), the remote configs (.json), and the remote cape file (.json), (both stored online). The remote configs have a few modes, as followed:
 * 0: Basic message (uses message as a string).
 * 1: Message (mainly for coloring) + "Thank you for x downloads!". 
 shows up until y downloads are reached (x and y are specified in the remote config json file). Will work only for Technic modpacks with the modpack slug setup in the local config and if Technic's API works.
