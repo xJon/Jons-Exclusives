@@ -18,7 +18,7 @@
 * 0: Basic message (uses message as a string).
 * 1: Message (mainly for coloring) + "Thank you for x downloads!". 
 shows up until y downloads are reached (x and y are specified in the remote config json file). Will work only for Technic modpacks with the modpack slug setup in the local config and if Technic's API works.
-* 2: Message (mainly for coloring) + player name + ", Have fun playing!".
+* 2: Message (mainly for coloring) + player name + ", have fun playing!".
 * 3 plus or -1 minus: Unimplemented, would return an error in the log (won't crash).
 
 For coloring and formatting use MOTD codes in the message string, specified [here](http://minecraft.gamepedia.com/Formatting_codes#Use_in_server.properties_and_pack.mcmeta).
