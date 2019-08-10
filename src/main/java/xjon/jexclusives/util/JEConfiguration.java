@@ -11,28 +11,21 @@ public class JEConfiguration {
 	public static boolean specialLoginsFireworksDisabled;
 	public static String customModpackSlug;
 	public static String urlForRemoteConfigs;
-	
-	public static boolean SPECIAL_LOGINS_ENABLED_DEFAULT = false;
-	public static boolean SPECIAL_LOGINS_FIREWORKS_ENABLED_DEFAULT = false;
-	public static String CUSTOM_MODPACK_SLUG_DEFAULT = "";
-	public static String URL_FOR_REMOTE_CONFIGS_DEFAULT = "";
-	
-	public static final String SPECIAL_LOGINS_ENABLED_NAME = "Disables all special logins features";
-	public static final String SPECIAL_LOGINS_FIREWORDS_NAME = "Forces fireworks to be disabled for special logins";
-	public static final String CUSTOM_MODPACK_SLUG_NAME = "Slug name of the modpack (Leave blank for non-Technic packs)";
-	public static final String URL_FOR_REMOTE_CONFIGS_NAME = "The URL of the remote .json configs";
 
 	public static final String MAIN = Configuration.CATEGORY_GENERAL + Configuration.CATEGORY_SPLITTER + "Main";
+	public static final String Logins = Configuration.CATEGORY_GENERAL + Configuration.CATEGORY_SPLITTER + "Logins";
 
+	
 	public static void syncConfig()
 	{
 		MinecraftForge.EVENT_BUS.register(JECore.instance);
+
+		urlForRemoteConfigs = JECore.config.get(MAIN, "Configs URL", "", "The URL of the remote .json configs").setRequiresMcRestart(true).getString();
+		customModpackSlug = JECore.config.get(MAIN, "Modpack Slug", "", "Slug name of the modpack (Leave blank for non-Technic packs)").setRequiresMcRestart(true).getString();
 		
-		specialLoginsDisabled = JECore.config.get(MAIN, SPECIAL_LOGINS_ENABLED_NAME, SPECIAL_LOGINS_ENABLED_DEFAULT).getBoolean(SPECIAL_LOGINS_ENABLED_DEFAULT);
-		specialLoginsFireworksDisabled = JECore.config.get(MAIN, SPECIAL_LOGINS_FIREWORDS_NAME, SPECIAL_LOGINS_FIREWORKS_ENABLED_DEFAULT).getBoolean(SPECIAL_LOGINS_FIREWORKS_ENABLED_DEFAULT);
-		customModpackSlug = JECore.config.get(MAIN, CUSTOM_MODPACK_SLUG_NAME, CUSTOM_MODPACK_SLUG_DEFAULT).getString();
-		urlForRemoteConfigs = JECore.config.get(MAIN, URL_FOR_REMOTE_CONFIGS_NAME, URL_FOR_REMOTE_CONFIGS_DEFAULT).getString();
-		
+		specialLoginsDisabled = JECore.config.get(Logins, "Disable Special Logins", false, "Disables all special logins features").setRequiresMcRestart(true).getBoolean(false);
+		specialLoginsFireworksDisabled = JECore.config.get(Logins, "Disable Fireworks", false, "Disables fireworks for special logins").setRequiresWorldRestart(true).getBoolean(false);
+				
 		if (JECore.config.hasChanged())
 		{
 			JECore.config.save();

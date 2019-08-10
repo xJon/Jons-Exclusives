@@ -81,8 +81,7 @@ public class Firework {
 	        }
 	      }
 	    }
-
-	    world.spawnEntityInWorld(getRandomFirework(world, new BlockCoord(pos)));
+	    world.spawnEntity(getRandomFirework(world, new BlockCoord(pos)));
 	  }
 
 	  private static double moveRandomly(double base, double range) {

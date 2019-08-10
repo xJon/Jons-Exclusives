@@ -37,9 +37,6 @@ public class StaticCape extends AbstractCape {
         this(name, null);
     }
 
-	/**
-	 * Thank you mmdanggg2!
-	 */
     @Override
     public void loadTexture(AbstractClientPlayer player) {
     	ResourceLocation location = this.getLocation();
@@ -54,8 +51,7 @@ public class StaticCape extends AbstractCape {
         		plrTxtrsF = NetworkPlayerInfo.class.getDeclaredField("field_187107_a");
             }
         	plrTxtrsF.setAccessible(true);
-        	@SuppressWarnings("unchecked")
-			Map<Type, ResourceLocation> plrTxtrs = (Map<Type, ResourceLocation>) plrTxtrsF.get(npi);
+        	Map<Type, ResourceLocation> plrTxtrs = (Map<Type, ResourceLocation>) plrTxtrsF.get(npi);
         	plrTxtrs.put(Type.CAPE, location);
         	plrTxtrsF.setAccessible(false);
         	

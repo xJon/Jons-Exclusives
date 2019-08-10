@@ -6,7 +6,6 @@
  */
 package xjon.developercapes;
 
-import jline.internal.Log;
 import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraftforge.client.event.RenderLivingEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;

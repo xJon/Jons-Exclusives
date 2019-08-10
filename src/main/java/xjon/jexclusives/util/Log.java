@@ -1,25 +1,27 @@
 package xjon.jexclusives.util;
 
-import net.minecraftforge.fml.common.FMLLog;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 
 public class Log {
 	
-	public static final String CHANNEL = Reference.MOD_NAME;
+	public static final Logger LOGGER = LogManager.getLogger(Reference.MOD_NAME);
 
 	  public static void warn(String msg) {
-	    FMLLog.log(CHANNEL, org.apache.logging.log4j.Level.WARN, msg, (Object[]) null);
+		  LOGGER.warn(msg);
 	  }
 
 	  public static void error(String msg) {
-	    FMLLog.log(CHANNEL, org.apache.logging.log4j.Level.ERROR, msg);
+		  LOGGER.error(msg);
 	  }
 
 	  public static void info(String msg) {
-	    FMLLog.log(CHANNEL, org.apache.logging.log4j.Level.INFO, msg);
+		  LOGGER.info(msg);
 	  }
 
 	  public static void debug(String msg) {
-	    FMLLog.log(CHANNEL, org.apache.logging.log4j.Level.DEBUG, msg);
+		  LOGGER.debug(msg);
 	  }
 
 }

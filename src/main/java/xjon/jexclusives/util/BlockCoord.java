@@ -32,7 +32,7 @@ public class BlockCoord {
 	  }
 
 	  public BlockCoord(double x, double y, double z) {
-	    this(MathHelper.floor_double(x), MathHelper.floor_double(y), MathHelper.floor_double(z));
+	    this((int) x, (int) y, (int) z);
 	  }
 
 	  public BlockCoord(TileEntity tile) {

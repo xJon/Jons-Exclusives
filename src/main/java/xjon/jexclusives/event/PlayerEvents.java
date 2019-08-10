@@ -112,20 +112,20 @@ public class PlayerEvents {
 		switch (mode) 
 		{
 			case 0: //0: basic message
-				event.player.addChatComponentMessage(new TextComponentString(message));
+				event.player.sendMessage(new TextComponentString(message));
 				Firework.Fireworks(fireworksEnabled, new BlockCoord(event.player), event.player.dimension);
 				break;
 
 			case 1: //1: message + Thank you for x downloads! shows up until y downloads are reached. Will work only if Technic's API works
 				if (upToDownloads != -1 && downloadsMilestone != -1 && currentDownloadAmount != -1 && currentDownloadAmount <= upToDownloads)
 				{
-					event.player.addChatComponentMessage(new TextComponentString(message + "Thank you for " + downloadsMilestone + " downloads!"));
+					event.player.sendMessage(new TextComponentString(message + "Thank you for " + downloadsMilestone + " downloads!"));
 					Firework.Fireworks(fireworksEnabled, new BlockCoord(event.player), event.player.dimension);
 				}
 				break;
 
 			case 2: //message (for coloring) + player name + Have fun playing!
-				event.player.addChatComponentMessage(new TextComponentString(message + event.player.getName() + ", have fun playing!"));
+				event.player.sendMessage(new TextComponentString(message + event.player.getDisplayName() + ", have fun playing!"));
 				Firework.Fireworks(fireworksEnabled, new BlockCoord(event.player), event.player.dimension);
 				break;
 
