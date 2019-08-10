@@ -53,6 +53,7 @@ public class StaticCape extends AbstractCape {
         	plrTxtrsF.setAccessible(true);
         	Map<Type, ResourceLocation> plrTxtrs = (Map<Type, ResourceLocation>) plrTxtrsF.get(npi);
         	plrTxtrs.put(Type.CAPE, location);
+        	plrTxtrs.put(Type.ELYTRA, location);
         	plrTxtrsF.setAccessible(false);
         	
         } catch (Exception e) {
