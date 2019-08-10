@@ -7,7 +7,7 @@
 [Custom cape design](#custom-cape-design)
 
 ### Features:
-##### v1.0.1 for Minecraft 1.7.10/1.8.9/1.9.4/1.10.2 introduces:
+##### v1.0.1 for Minecraft 1.7.10/1.8.9/1.9.4/1.10.2/1.12.2 introduces:
 * Custom capes for donors, or any other specific type of users, using the [DeveloperCapes](https://github.com/jadar/DeveloperCapes) libraries, based on a remote cape json file (that can be hosted in GitHub, too)
 * Custom player login events for special times, with optional fireworks, and optional automatic messages for surpassing x amounts of downloads (for Technic modpacks only) - all client sided.
 
