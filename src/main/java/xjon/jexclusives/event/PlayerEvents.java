@@ -1,6 +1,7 @@
 package xjon.jexclusives.event;
 
 import java.net.URL;
+import java.text.DecimalFormat;
 import java.util.HashMap;
 
 import com.google.common.base.Charsets;
@@ -43,6 +44,13 @@ public class PlayerEvents {
 
 	static class TechnicModpackApiData {
 		int downloads;
+	}
+	
+	private static String formatNumber(int number)
+	{
+		DecimalFormat formatter = new DecimalFormat("#,###,###");
+		String formattedNumber = formatter.format(number);
+		return formattedNumber;
 	}
 
 	public static void fetchData() {
@@ -119,7 +127,7 @@ public class PlayerEvents {
 			case 1: //1: message + Thank you for x downloads! shows up until y downloads are reached. Will work only if Technic's API works
 				if (upToDownloads != -1 && downloadsMilestone != -1 && currentDownloadAmount != -1 && currentDownloadAmount <= upToDownloads)
 				{
-					event.player.sendMessage(new TextComponentString(message + "Thank you for " + downloadsMilestone + " downloads!"));
+					event.player.sendMessage(new TextComponentString(message + "Thank you for " + formatNumber(downloadsMilestone) + " downloads!"));
 					Firework.Fireworks(fireworksEnabled, new BlockCoord(event.player), event.player.dimension);
 				}
 				break;

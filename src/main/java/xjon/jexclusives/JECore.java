@@ -4,7 +4,6 @@ import java.io.File;
 
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
-import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
@@ -14,6 +13,7 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import xjon.jexclusives.event.ConfigEvents;
 import xjon.jexclusives.event.PlayerEvents;
+import xjon.jexclusives.item.JEItems;
 import xjon.jexclusives.proxy.CommonProxy;
 import xjon.jexclusives.util.JEConfiguration;
 import xjon.jexclusives.util.Reference;
@@ -37,6 +37,7 @@ public class JECore
 		config.load();
 		JEConfiguration.syncConfig();
 		MinecraftForge.EVENT_BUS.register(new PlayerEvents());
+		JEItems.init();
 	}
 	
 	@EventHandler
@@ -45,6 +46,7 @@ public class JECore
 		PlayerEvents.fetchData();
 		MinecraftForge.EVENT_BUS.register(new ConfigEvents());
 	}
+	
 	@EventHandler
 	public void PostInit(FMLPostInitializationEvent event)
 	{
