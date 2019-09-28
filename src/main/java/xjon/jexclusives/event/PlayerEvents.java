@@ -133,7 +133,7 @@ public class PlayerEvents {
 				break;
 
 			case 2: //message (for coloring) + player name + Have fun playing!
-				event.player.sendMessage(new TextComponentString(message + event.player.getDisplayName() + ", have fun playing!"));
+				event.player.sendMessage(new TextComponentString(message + event.player.getName() + ", have fun playing!"));
 				Firework.Fireworks(fireworksEnabled, new BlockCoord(event.player), event.player.dimension);
 				break;
 
