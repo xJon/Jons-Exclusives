@@ -10,7 +10,6 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import xjon.jexclusives.event.ConfigEvents;
-import xjon.jexclusives.event.GuiEvents;
 import xjon.jexclusives.event.PlayerEvents;
 import xjon.jexclusives.item.JEItems;
 import xjon.jexclusives.proxy.CommonProxy;
@@ -35,8 +34,10 @@ public class JECore {
         config = new Configuration(new File("config/JonsExclusives.cfg"));
         config.load();
         JEConfiguration.syncConfig();
+
         MinecraftForge.EVENT_BUS.register(new PlayerEvents());
-        MinecraftForge.EVENT_BUS.register(new GuiEvents());
+        proxy.registerGuiEvents();
+
         JEItems.init();
     }
 

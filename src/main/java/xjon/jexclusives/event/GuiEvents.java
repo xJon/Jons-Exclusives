@@ -5,8 +5,8 @@ import net.minecraft.client.gui.GuiMultiplayer;
 import net.minecraftforge.client.event.GuiScreenEvent.ActionPerformedEvent;
 import net.minecraftforge.client.event.GuiScreenEvent.InitGuiEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import xjon.jexclusives.util.Log;
 import xjon.jexclusives.util.JEConfiguration;
+import xjon.jexclusives.util.Log;
 
 import java.net.URI;
 
