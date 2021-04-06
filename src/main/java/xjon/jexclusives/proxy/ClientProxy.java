@@ -3,7 +3,9 @@ package xjon.jexclusives.proxy;
 import com.google.common.base.Charsets;
 import com.google.common.io.Resources;
 import com.google.gson.Gson;
+import net.minecraftforge.common.MinecraftForge;
 import xjon.developercapes.DevCapes;
+import xjon.jexclusives.event.GuiEvents;
 import xjon.jexclusives.event.PlayerEvents;
 import xjon.jexclusives.util.JEConfiguration;
 import xjon.jexclusives.util.Log;
@@ -30,6 +32,11 @@ public class ClientProxy extends CommonProxy {
         } else {
             Log.error("Jon's Exclusives' remote configs for selected URL are down (check if it's correct)");
         }
+    }
+
+    @Override
+    public void registerGuiEvents() {
+        MinecraftForge.EVENT_BUS.register(new GuiEvents());
     }
 
 }
