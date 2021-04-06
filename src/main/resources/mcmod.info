@@ -2,13 +2,13 @@
 {
   "modid": "jexclusives",
   "name": "Jon's Exclusives",
-  "description": "A custom Minecraft mod for exclusive content.",
+  "description": "A modpack utility mod made for Minecraft.",
   "version": "1.0.1",
   "mcversion": "1.7.10",
   "url": "https://github.com/xJon/Jons-Exclusives",
   "updateUrl": "",
   "authorList": ["Jon"],
-  "credits": "JadarStudios, Clienthax, and you.",
+  "credits": "JadarStudios, Clienthax",
   "logoFile": "",
   "screenshots": [],
   "dependencies": []

@@ -8,11 +8,10 @@ import xjon.jexclusives.JECore;
 import xjon.jexclusives.util.Reference;
 
 public class JEConfigGui extends GuiConfig {
-	
-	public JEConfigGui(GuiScreen screen)
-	{
-		super(screen, new ConfigElement(JECore.config.getCategory(Configuration.CATEGORY_GENERAL)).getChildElements(),
-				Reference.MOD_ID, false, false, GuiConfig.getAbridgedConfigPath(JECore.config.toString()));
-	}
+
+    public JEConfigGui(GuiScreen screen) {
+        super(screen, new ConfigElement(JECore.config.getCategory(Configuration.CATEGORY_GENERAL)).getChildElements(),
+                Reference.MOD_ID, false, false, GuiConfig.getAbridgedConfigPath(JECore.config.toString()));
+    }
 
 }
