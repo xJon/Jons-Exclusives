@@ -8,14 +8,12 @@ import xjon.jexclusives.util.Reference;
 
 public class ConfigEvents {
 
-	@SubscribeEvent
-	public void onConfigChanged(ConfigChangedEvent.OnConfigChangedEvent event)
-	{
-		if (event.getModID().equals(Reference.MOD_ID))
-		{
-			JEConfiguration.syncConfig();
-			Log.info("Configuration changed");
-		}
-	}
-	
+    @SubscribeEvent
+    public void onConfigChanged(ConfigChangedEvent.OnConfigChangedEvent event) {
+        if (event.getModID().equals(Reference.MOD_ID)) {
+            JEConfiguration.syncConfig();
+            Log.info("Configuration changed");
+        }
+    }
+
 }

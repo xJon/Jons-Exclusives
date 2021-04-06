@@ -12,24 +12,23 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class JEItems {
 
-	public static Item crystal;
-	
-	public static void init()
-	{
-		crystal = new ItemCrystal();
-		
-		MinecraftForge.EVENT_BUS.register(JEItems.class);
-	}
-	
-	@SubscribeEvent
-	@SideOnly(Side.CLIENT)
-	public static void registerModels(ModelRegistryEvent event) {
-		ModelLoader.setCustomModelResourceLocation(crystal, 0, new ModelResourceLocation(crystal.getRegistryName(), "inventory"));
-	}
+    public static Item crystal;
 
-	@SubscribeEvent
-	public static void register(RegistryEvent.Register<Item> event) {
-		event.getRegistry().register(crystal);
-	}
-	
+    public static void init() {
+        crystal = new ItemCrystal();
+
+        MinecraftForge.EVENT_BUS.register(JEItems.class);
+    }
+
+    @SubscribeEvent
+    @SideOnly(Side.CLIENT)
+    public static void registerModels(ModelRegistryEvent event) {
+        ModelLoader.setCustomModelResourceLocation(crystal, 0, new ModelResourceLocation(crystal.getRegistryName(), "inventory"));
+    }
+
+    @SubscribeEvent
+    public static void register(RegistryEvent.Register<Item> event) {
+        event.getRegistry().register(crystal);
+    }
+
 }
