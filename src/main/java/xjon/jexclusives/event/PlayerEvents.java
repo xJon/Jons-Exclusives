@@ -99,10 +99,11 @@ public class PlayerEvents {
                 if (currentDownloadAmount % downloadsMilestone <= upToDownloads) {
                     int roundedDownloadsMilestone = (currentDownloadAmount / downloadsMilestone) * downloadsMilestone;
                     event.player.addChatMessage(new ChatComponentText(message + "Thank you for " + formatNumber(roundedDownloadsMilestone) + " downloads!"));
-                } else
-                    event.player.addChatComponentMessage(new ChatComponentText(message + event.player.getDisplayName() + ", have fun playing!"));
 
-                Firework.Fireworks(fireworksEnabled, new BlockCoord(event.player), event.player.dimension);
+                    Firework.Fireworks(fireworksEnabled, new BlockCoord(event.player), event.player.dimension);
+                } else
+                    // No fireworks for mode 3 in this case
+                    event.player.addChatComponentMessage(new ChatComponentText(message + event.player.getDisplayName() + ", have fun playing!"));
                 break;
             default:
                 Log.error("Jon's Exclusives' remote configs' mode is invalid");
