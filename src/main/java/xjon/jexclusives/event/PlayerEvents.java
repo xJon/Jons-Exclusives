@@ -42,23 +42,15 @@ public class PlayerEvents {
                                 fireworksEnabled = remoteConfigs.fireworks;
                                 mode = remoteConfigs.mode;
 
-                                if (remoteConfigs.mode == 1) {
-                                    //Store pack data if the mode is equal to 1
+                                if (remoteConfigs.mode == 1 || remoteConfigs.mode == 3) {
                                     if (!JEConfiguration.customModpackSlug.isEmpty() && UrlValidator.isUrlValid(technicApiUrl)) {
                                         TechnicApiData technicApiData = new Gson().fromJson(Resources.toString(new URL(technicApiUrl), Charsets.UTF_8), TechnicApiData.class);
                                         TechnicModpackApiData packData = new Gson().fromJson(Resources.toString(new URL("http://api.technicpack.net/modpack/" + JEConfiguration.customModpackSlug + "?build=" + technicApiData.build), Charsets.UTF_8), TechnicModpackApiData.class
                                         );
-                                        currentDownloadAmount = packData.downloads;
 
-                                        if (currentDownloadAmount == 0 && JEConfiguration.customModpackSlug.equals("the-1710-pack") && UrlValidator.isUrlValid("http://the-1710-pack.com/repo?api=true")) {
-                                            packData = new Gson().fromJson(Resources.toString(new URL("http://the-1710-pack.com/repo?api=true"), Charsets.UTF_8), TechnicModpackApiData.class);
-                                            currentDownloadAmount = packData.downloads;
-                                        }
-
-                                        if (currentDownloadAmount >= remoteConfigs.x && currentDownloadAmount <= remoteConfigs.y) {
-                                            downloadsMilestone = remoteConfigs.x;
-                                            upToDownloads = remoteConfigs.y;
-                                        }
+                                        currentDownloadAmount = packData.installs;
+                                        downloadsMilestone = remoteConfigs.x;
+                                        upToDownloads = remoteConfigs.y;
                                     } else {
                                         Log.error("Either Technic's API is down, or Jon's Exclusives' remote configs' mode is set to 1, for Technic packs only, while local configs are set to non-Technic packs");
                                     }
@@ -85,7 +77,7 @@ public class PlayerEvents {
                 break;
 
             case 1: // 1: message (for formatting) + Thank you for x downloads! shows up until y downloads are reached. Will work only if Technic's API works
-                if (upToDownloads != -1 && downloadsMilestone != -1 && currentDownloadAmount != -1 && currentDownloadAmount <= upToDownloads) {
+                if (currentDownloadAmount > downloadsMilestone && currentDownloadAmount < upToDownloads) {
                     event.player.addChatMessage(new ChatComponentText(message + "Thank you for " + formatNumber(downloadsMilestone) + " downloads!"));
                     Firework.Fireworks(fireworksEnabled, new BlockCoord(event.player), event.player.dimension);
                 }
@@ -106,7 +98,8 @@ public class PlayerEvents {
                     event.player.addChatComponentMessage(new ChatComponentText(message + event.player.getDisplayName() + ", have fun playing!"));
                 break;
             default:
-                Log.error("Jon's Exclusives' remote configs' mode is invalid");
+                // Log.warn("Jon's Exclusives' remote config's mode is invalid");
+                // Unnecessary warning on every player join, as it warns on startup
                 break;
         }
     }
@@ -126,7 +119,7 @@ public class PlayerEvents {
     }
 
     static class TechnicModpackApiData {
-        int downloads;
+        int installs;
     }
 
 }
