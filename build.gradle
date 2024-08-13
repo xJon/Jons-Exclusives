@@ -1,10 +1,9 @@
 buildscript {
     repositories {
-        jcenter()
-        maven { url = "https://files.minecraftforge.net/maven" }
+        maven { url = "https://maven.minecraftforge.net" }
     }
     dependencies {
-        classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
+        classpath 'com.anatawa12.forge:ForgeGradle:2.3-1.0.8'
     }
 }
 apply plugin: 'net.minecraftforge.gradle.forge'
@@ -12,7 +11,7 @@ apply plugin: 'net.minecraftforge.gradle.forge'
 
 
 version = "1.12.2-1.1.2"
-group= "xjon.jexclusives"
+group = "xjon.jexclusives"
 archivesBaseName = "jexclusives"
 
 sourceCompatibility = targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
