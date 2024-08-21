@@ -12,6 +12,7 @@ public class JEConfiguration {
     public static boolean specialLoginsDisabled;
     public static boolean specialLoginsFireworksDisabled;
     public static boolean recommendedServerHostButtonDisabled;
+    public static boolean recommendedResourcePackButtonDisabled;
     public static String customModpackSlug;
     public static String urlForRemoteConfigs;
 
@@ -24,7 +25,9 @@ public class JEConfiguration {
         specialLoginsDisabled = JECore.config.get(Logins, "Disable Special Logins", false, "Disables all special logins features").setRequiresMcRestart(true).getBoolean(false);
         specialLoginsFireworksDisabled = JECore.config.get(Logins, "Disable Fireworks", false, "Disables fireworks for special logins").setRequiresWorldRestart(true).getBoolean(false);
 
-        recommendedServerHostButtonDisabled = JECore.config.get(Other, "Hide Server Button", false, "Hides the recommended server host button").setRequiresMcRestart(true).getBoolean(false);
+        recommendedServerHostButtonDisabled = JECore.config.get(Other, "Hide Server Button", false, "Hides the recommended server host button").setRequiresMcRestart(false).getBoolean(false);
+        recommendedResourcePackButtonDisabled = JECore.config.get(Other, "Hide Resource Pack Button", false, "Hides the recommended resource pack button").setRequiresMcRestart(false).getBoolean(false);
+
         if (JECore.config.hasChanged()) {
             JECore.config.save();
         }
